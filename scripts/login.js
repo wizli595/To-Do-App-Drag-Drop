@@ -57,6 +57,7 @@ loginForm.addEventListener("submit", (e) => {
 
     localStorage.setItem("currentUser", email);
     // Redirect
+    console.log(window.location.href);
     window.location.href = `./task.html`;
   } else {
     alert("Incorrect password. Please try again.");
