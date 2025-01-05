@@ -1,0 +1,194 @@
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
+
+/* Global Styles */
+body {
+  background-color: #f0f0f0;
+  color: #333;
+  font-family: "Press Start 2P", sans-serif;
+  margin: 10px;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header */
+header {
+  background-color: #bebdbd;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  width: 90%;
+  text-transform: uppercase;
+  font-size: 1.2em;
+}
+
+/* Main Section */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Bubble Container */
+.bubble-container {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Bubble Styles */
+.bubble {
+  width: 250px;
+  height: 250px;
+  background-color: #ffffff;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.bubble i {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #4caf50;
+}
+
+.bubble h2 {
+  font-size: 1.1em;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.bubble p {
+  font-size: 0.8em;
+  color: #666;
+  padding: 0 10px;
+}
+
+/* Bubble Hover Effects */
+.bubble:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Login Bubble Specific Styles */
+.login-bubble {
+  background-color: #4caf50;
+  color: white;
+}
+
+.login-bubble i {
+  color: white;
+}
+
+.login-bubble:hover {
+  background-color: #388e3c;
+}
+
+/* About Bubble Specific Styles */
+.about-bubble {
+  background-color: #2196f3;
+  color: white;
+}
+
+.about-bubble i {
+  color: white;
+}
+
+.about-bubble:hover {
+  background-color: #1976d2;
+}
+
+/* Footer */
+footer {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.8em;
+  color: #777;
+}
+
+/* Dark Mode Support */
+body.dark {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark header {
+  background-color: #333;
+}
+
+body.dark .bubble {
+  background-color: #444;
+  border: 2px solid #666;
+}
+
+body.dark .bubble i {
+  color: #a7e245;
+}
+
+body.dark .bubble h2 {
+  color: #e0e0e0;
+}
+
+body.dark .bubble p {
+  color: #bbb;
+}
+
+body.dark .login-bubble {
+  background-color: #2e7d32;
+}
+
+body.dark .about-bubble {
+  background-color: #1565c0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bubble-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .bubble {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    font-size: 1em;
+    padding: 10px;
+  }
+
+  .bubble {
+    width: 180px;
+    height: 180px;
+  }
+
+  .bubble i {
+    font-size: 2em;
+  }
+
+  .bubble h2 {
+    font-size: 1em;
+  }
+
+  .bubble p {
+    font-size: 0.7em;
+  }
+}

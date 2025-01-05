@@ -9,6 +9,29 @@ document.querySelector(".add-task-btn").addEventListener("click", function () {
     input.value = "";
   }
 });
+function checkAuthentication() {
+  const currentUser = localStorage.getItem("currentUser");
+
+  if (!currentUser) {
+    alert("You are not logged in. Redirecting to login page...");
+    window.location.href = "./login.html";
+  }
+}
+function displayUserEmail() {
+  const currentUser = localStorage.getItem("currentUser");
+
+  const userEmailElement = document.querySelector(".user-email");
+  if (currentUser) {
+    userEmailElement.textContent = currentUser;
+  } else {
+    userEmailElement.textContent = "Guest";
+  }
+}
+document.getElementById("logout-btn").addEventListener("click", () => {
+  localStorage.removeItem("currentUser");
+  alert("You have been logged out.");
+  window.location.href = "./login.html";
+});
 
 function createTaskButtons(task) {
   const taskButtons = document.createElement("div");
@@ -69,7 +92,6 @@ function dragStart(event) {
 
 function dragEnd(event) {
   event.target.style.display = "flex";
-
 }
 
 function dragOver(event) {
@@ -90,13 +112,12 @@ function saveBoardState() {
   const columns = {};
   document.querySelectorAll(".column").forEach((column) => {
     const columnId = column.id;
-    // without saving the delete button 
+    // without saving the delete button
 
     const tasks = Array.from(column.querySelectorAll(".task")).map((task) => {
       const taskText = task.firstChild.textContent;
       return taskText;
     });
-
 
     // const tasks = Array.from(column.querySelectorAll(".task")).map((task) => task.textContent);
     columns[columnId] = tasks;
@@ -161,27 +182,38 @@ function loadDarkModeState() {
 // for touch devices
 function addTouchListeners(task) {
   task.addEventListener("touchstart", touchStart, {
-    passive: true
+    passive: true,
   });
   task.addEventListener("touchmove", touchMove, {
-    passive: false
+    passive: false,
   });
   task.addEventListener("touchend", touchEnd, {
-    passive: true
+    passive: true,
   });
 }
 
 function touchStart(event) {
   // event.preventDefault();
   const touch = event.touches[0];
+
+  // Store the original column BEFORE appending to the body
+  if (!this.dataset.originalColumn) {
+    const parentColumn = this.closest(".column"); // Find the closest parent column
+    console.log(parentColumn);
+    if (parentColumn && parentColumn.id) {
+      this.dataset.originalColumn = parentColumn.id;
+      console.log(`Original column saved: ${this.dataset.originalColumn}`);
+    } else {
+      console.warn("Could not find parent column during touchStart");
+    }
+  }
+
+  // Move the task to the body for free movement
   this.style.position = "absolute";
   this.style.zIndex = 1000;
   this.style.left = `${touch.pageX - this.offsetWidth / 2}px`;
   this.style.top = `${touch.pageY - this.offsetHeight / 2}px`;
   document.body.appendChild(this);
-  // Store the original column
-  this.dataset.originalColumn = this.parentElement;
-  console.log(this.dataset.originalColumn);
 }
 
 function touchMove(event) {
@@ -189,29 +221,52 @@ function touchMove(event) {
   const touch = event.touches[0];
   this.style.left = `${touch.pageX - this.offsetWidth / 2}px`;
   this.style.top = `${touch.pageY - this.offsetHeight / 2}px`;
+  // this.style.transform = `translate(${touch.pageX - offsetX}px, ${
+  //   touch.pageY - offsetY
+  // }px)`;
 }
 
 function touchEnd(event) {
-  // event.preventDefault();
   this.style.position = "";
   this.style.zIndex = "";
+
   const touch = event.changedTouches[0];
   const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
-  if (dropTarget && dropTarget.classList.contains("column")) {
-    dropTarget.appendChild(this);
 
+  // Detect valid drop target
+  const validDropTarget = dropTarget?.closest(".column");
+
+  if (validDropTarget && validDropTarget.classList.contains("column")) {
+    validDropTarget.appendChild(this);
+    console.log(`Task moved to column: ${validDropTarget.id}`);
+
+    // Update the original column to the new one
+    this.dataset.originalColumn = validDropTarget.id;
   } else {
-    // Return the task to its original position
-    const originalColumn = document.getElementById(this.dataset.originalColumn);
-    console.log(originalColumn);
-    originalColumn.appendChild(this);
+    // Return to original column if drop target is invalid
+    const originalColumnId = this.dataset.originalColumn;
+    if (originalColumnId) {
+      const originalColumn = document.getElementById(originalColumnId);
+      if (originalColumn) {
+        originalColumn.appendChild(this);
+        console.log(`Task returned to original column: ${originalColumnId}`);
+      } else {
+        console.error(
+          `Original column with ID "${originalColumnId}" not found`
+        );
+      }
+    } else {
+      console.error("Original column ID is missing in dataset");
+    }
   }
 }
-document.querySelectorAll(".task").forEach(addTouchListeners);
 
+document.querySelectorAll(".task").forEach(addTouchListeners);
 
 window.addEventListener("load", () => {
   loadBoardState();
   loadDarkModeState();
+  checkAuthentication();
+  displayUserEmail();
 });
 window.addEventListener("beforeunload", saveBoardState);

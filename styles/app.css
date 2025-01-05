@@ -11,10 +11,64 @@ header {
   background-color: #bebdbd;
   color: white;
   text-align: center;
-
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* User Info Section */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8em;
+  color: #000;
+  font-family: "Press Start 2P", sans-serif;
+}
+
+/* User Email Display */
+.user-info .user-email {
+  font-size: 0.8em;
+  color: #4caf50;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Logout Button */
+.logout-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.8em;
+  font-family: "Press Start 2P", sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: black;
+  background-color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.8em;
 }
 /* toggle button */
 .theme-toggle {
@@ -71,7 +125,9 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-size: smaller;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .task:active {
@@ -135,6 +191,10 @@ main {
 
   border-radius: 50%;
 }
+.fa-trash-alt,
+.fa-edit {
+  color: white;
+}
 
 /* Dark*/
 body.dark {
@@ -171,6 +231,16 @@ body.dark .task {
   .add-task-btn {
     width: 100%;
   }
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .user-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -183,6 +253,19 @@ body.dark .task {
   header {
     padding: 5px;
     margin-bottom: 5px;
+  }
+
+  .user-info .user-email {
+    font-size: 0.7em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
+  .logout-btn {
+    font-size: 0.7em;
+    padding: 3px 6px;
   }
 
   .task {

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Board</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/styles/app.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Task Board</h1>
+
+      <div class="user-info">
+        <span class="user-email">user@example.com</span>
+        <button id="logout-btn" class="logout-btn">Logout</button>
+      </div>
+      <!-- light mode and dark mode  -->
+      <button class="theme-toggle">
+        <i class="fas fa-sun light"></i>
+      </button>
+    </header>
+    <div class="input-box">
+      <input type="text" class="add-task-input" placeholder="Add a task" />
+      <button class="add-task-btn">Add Task</button>
+    </div>
+    <main>
+      <div class="board">
+        <div class="column" id="todo">
+          <div class="column-header">To Do</div>
+        </div>
+        <div class="column" id="in-progress">
+          <div class="column-header">In Progress</div>
+        </div>
+        <div class="column" id="done">
+          <div class="column-header">Done</div>
+        </div>
+      </div>
+    </main>
+
+    <script src="/scripts/app.js"></script>
+  </body>
+</html>

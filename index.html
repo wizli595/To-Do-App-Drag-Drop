@@ -3,41 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Board</title>
+    <title>Welcome - Task Board App</title>
+    <link rel="stylesheet" href="./styles/index.css" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
-      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="app.css" />
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   </head>
   <body>
     <header>
-      <h1>Task Board</h1>
-      <!-- light mode and dark mode  -->
-      <button class="theme-toggle">
-        <i class="fas fa-sun light"></i>
-      </button>
+      <h1>Welcome to Task Board</h1>
     </header>
-    <div class="input-box">
-      <input type="text" class="add-task-input" placeholder="Add a task" />
-      <button class="add-task-btn">Add Task</button>
-    </div>
     <main>
-      <div class="board">
-        <div class="column" id="todo">
-          <div class="column-header">To Do</div>
+      <div class="bubble-container">
+        <!-- Login Bubble -->
+        <div
+          class="bubble login-bubble"
+          onclick="redirectTo('templates/login.html')">
+          <i class="fas fa-sign-in-alt"></i>
+          <h2>Login</h2>
+          <p>Start managing your tasks efficiently!</p>
         </div>
-        <div class="column" id="in-progress">
-          <div class="column-header">In Progress</div>
-        </div>
-        <div class="column" id="done">
-          <div class="column-header">Done</div>
+
+        <!-- About Bubble -->
+        <div
+          class="bubble about-bubble"
+          onclick="redirectTo('templates/about.html')">
+          <i class="fas fa-info-circle"></i>
+          <h2>About</h2>
+          <p>Learn more about our app's features.</p>
         </div>
       </div>
     </main>
-
-    <script src="app.js"></script>
+    <footer>
+      <p>© 2024 Task Board App. All rights reserved.</p>
+    </footer>
+    <script>
+      function redirectTo(page) {
+        window.location.href = page;
+      }
+    </script>
   </body>
 </html>

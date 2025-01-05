@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
+
+/* Global Styles */
+body {
+  background-color: #f0f0f0;
+  color: #333;
+  font-family: "Press Start 2P", sans-serif;
+  margin: 10px;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background-color: #bebdbd;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 1.2em;
+}
+
+header .back-btn {
+  text-decoration: none;
+  background-color: #4caf50;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8em;
+  transition: background-color 0.3s ease;
+}
+
+header .back-btn:hover {
+  background-color: #388e3c;
+}
+
+/* Main Sections */
+main {
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Intro Section */
+.intro {
+  margin-bottom: 20px;
+}
+
+.intro h2 {
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.intro p {
+  font-size: 0.9em;
+}
+
+/* Features Section */
+.features h2,
+.how-it-works h2,
+.credits h2 {
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.features ul {
+  list-style: none;
+  padding: 0;
+}
+
+.features li {
+  margin-bottom: 8px;
+  font-size: 0.9em;
+}
+
+.features i {
+  color: #4caf50;
+  margin-right: 5px;
+}
+
+/* How It Works Section */
+.how-it-works ol {
+  list-style: decimal;
+  padding-left: 20px;
+  font-size: 0.9em;
+}
+
+/* Credits Section */
+.credits p {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9em;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.8em;
+  color: #777;
+}
+
+/* Dark Mode Support */
+body.dark {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark main {
+  background-color: #333;
+}
+
+body.dark header {
+  background-color: #444;
+}
+
+body.dark .back-btn {
+  background-color: #f44336;
+}
+
+body.dark .back-btn:hover {
+  background-color: #d32f2f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .features li,
+  .how-it-works li {
+    font-size: 0.8em;
+  }
+}
